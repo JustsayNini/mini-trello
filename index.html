@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini-Trello</title>
+    <link rel="shortcut icon" href="img/icons/mini-trello.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#0052CC" color="#0052CC"><title>Mini-Trello</title><path d="M21.147 0H2.853A2.86 2.86 0 000 2.853v18.294A2.86 2.86 0 002.853 24h18.294A2.86 2.86 0 0024 21.147V2.853A2.86 2.86 0 0021.147 0zM10.34 17.287a.953.953 0 01-.953.953h-4a.954.954 0 01-.954-.953V5.38a.953.953 0 01.954-.953h4a.954.954 0 01.953.953zm9.233-5.467a.944.944 0 01-.953.947h-4a.947.947 0 01-.953-.947V5.38a.953.953 0 01.953-.953h4a.954.954 0 01.953.953z"/></svg>
+        <h1>MINI-TRELLO</h1>
+    </header>
+
+
+    <main>
+        <div id="to-do" class="main-section">
+            <h2>TO-DO</h2>
+            <button onclick="createCard()" class="add-card" id="to-do-btn"> + ADD A CARD </button>
+        </div>
+
+        <div id="doing" class="main-section">
+            <h2>DOING</h2>
+            <button onclick="createCard()" class="add-card"> + ADD A CARD </button>
+        </div>
+
+        <div id="done" class="main-section">
+            <h2>DONE</h2>
+            <button onclick="createCard()" class="add-card"> + ADD A CARD </button>
+        </div>
+    </main>
+
+
+    <footer> &copy; MINI-TRELLO 2026. All Rights Reserved. </footer>
+    <script src="script.js"></script>
+</body>
+</html>
