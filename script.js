@@ -1,33 +1,59 @@
-let taskBoxes = JSON.parse(localStorage.getItem('taskBoxes')) || []
+let taskBoxes = JSON.parse(localStorage.getItem('taskBoxes')) || [];
 let addTask = document.getElementById("to-do");
 
 let taskBox;
-function createCard(title = "Title", date ="", time = "", status = "No tasks yet"){
+function displayCard(cardData){
 
     taskBox = document.createElement("div");
     taskBox.className = "task-box-shell";
-    taskBox.setAttribute("onclick", "openCard()")
     taskBox.innerHTML = `
-        <h1> ${title} </h1>
-        <article> Due <input type="date" class="editable-date" value="${date}" disabled> at <input type="time" class="editable-time" value="${time}" disabled> </article>
-        <input type="checkbox" id="task-box-total"> <article> ${status} </article>
-    `
-
-    addTask.appendChild(taskBox);
+        <h1 contenteditable="true" class="card-title" oninput="saveAllToStorage()">${cardData.title}</h1>
+        <div class="checklist-container">
+            <input type="checkbox" class="item-checkbox" ${cardData.checkbox ? 'checked' : ''} oninput="saveAllToStorage()">
+            <input type="text" class="item-text" value="${cardData.task}" oninput="saveAllToStorage()">
+            <button onclick="saveAllToStorage()">+</button>
+        </div>
+    `;
     
-    const newCard = {
-        title,
-        date,
-        time,
-        status
-    };
-   
-    taskBoxes.push(newCard);
-    localStorage.setItem('taskBoxes', JSON.stringify(taskBoxes));
+    addTask.appendChild(taskBox);
 }
 
-function loadSavedTasks(){
-    taskBoxes.forEach(card => createCard(card.title, card.date, card.status));
+function createCard() {
+    const newCardData = {
+        title: "Title",
+        checkbox: false,
+        task: ""
+    };
+    
+    taskBoxes.push(newCardData);
+    
+    localStorage.setItem('taskBoxes', JSON.stringify(taskBoxes));
+    
+    displayCard(newCardData);
+}
+
+function loadSavedTasks() {
+    addTask.innerHTML = ""; 
+    
+    taskBoxes.forEach(card => {
+        displayCard(card);
+    });
 }
 
 loadSavedTasks();
+
+function saveAllToStorage() {
+    const cardsOnScreen = document.querySelectorAll('.task-box-shell');
+    let updatedList = [];
+
+    cardsOnScreen.forEach(card => {
+        updatedList.push({
+            title: card.querySelector('.card-title').innerText,
+            checkbox: card.querySelector('.item-checkbox').checked,
+            task: card.querySelector('.item-text').value
+        });
+    });
+
+    taskBoxes = updatedList;
+    localStorage.setItem('taskBoxes', JSON.stringify(taskBoxes));
+}
