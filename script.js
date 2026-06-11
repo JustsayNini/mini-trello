@@ -9,9 +9,11 @@ function displayCard(cardData){
     taskBox.innerHTML = `
         <h1 contenteditable="true" class="card-title" oninput="saveAllToStorage()">${cardData.title}</h1>
         <div class="checklist-container">
-            <input type="checkbox" class="item-checkbox" ${cardData.checkbox ? 'checked' : ''} oninput="saveAllToStorage()">
-            <input type="text" class="item-text" value="${cardData.task}" oninput="saveAllToStorage()">
-            <button onclick="saveAllToStorage()">+</button>
+            <input type="checkbox" id="item-checkbox" ${cardData.checkbox ? 'checked' : ''} oninput="saveAllToStorage()">
+            <input type="text" id="item-text" value="${cardData.task}" oninput="saveAllToStorage()" placeholder="Write something here...">
+            <button onclick="saveTask(this)">+</button>
+
+            <div class="list-container"></div>
         </div>
     `;
     
@@ -41,6 +43,29 @@ function loadSavedTasks() {
 }
 
 loadSavedTasks();
+
+function saveTask(theclickedbutton) {
+    let card = theclickedbutton.closest('.task-box-shell');
+    
+    let inputSpace = card.querySelector('#item-text');
+    let checkboxSpace = card.querySelector('#item-checkbox');
+    let listContainer = card.querySelector('.list-container');
+    
+    if (inputSpace.value.trim() === "") return;
+    
+    let newItem = document.createElement("p");
+    
+    if (checkboxSpace.checked) {
+        newItem.style.textDecoration = "line-through";
+    }
+    
+    newItem.innerText = "- " + inputSpace.value;
+    
+    listContainer.appendChild(newItem);
+    
+    inputSpace.value = "";
+    checkboxSpace.checked = false;
+}
 
 function saveAllToStorage() {
     const cardsOnScreen = document.querySelectorAll('.task-box-shell');
