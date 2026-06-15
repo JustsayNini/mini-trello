@@ -133,6 +133,13 @@ main{
 
 }
 
+.disclaimer{
+    font-family: sans-serif;
+    font-size: 0.7rem;
+    color: rgba(149, 151, 154, 0.592);
+    margin-bottom: 1vh;
+}
+
 footer{
     position: absolute;
     bottom: -4vh;

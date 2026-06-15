@@ -23,7 +23,9 @@ function displayCard(cardData){
                 <button onclick="moveCard(this)" class="move-btn">Move</button>
             </div>
 
-            <div class="list-container"></div>
+            <div class="list-container">
+                <p class="disclaimer">Double-click to remove an item</p>
+            </div>
 
         </div>
     `;
@@ -67,10 +69,10 @@ function saveTask(theclickedbutton) {
     if (inputSpace.value.trim() === "") return;
     
     let newItem = document.createElement("p");
-    
-    // if (checkboxSpace.checked) {
-    //     newItem.style.textDecoration = "line-through";
-    // }
+    newItem.className = "list-item";
+    newItem.ondblclick = function(){
+        newItem.style.textDecoration = "line-through";
+    }
     
     newItem.innerText = "- " + inputSpace.value;
     
