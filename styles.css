@@ -84,6 +84,7 @@ main{
     justify-content: space-around;
     align-items: center;
     padding: 2vh 1vw;
+    margin: 3vh auto;
 }
 
 .task-box-shell h1{
@@ -95,8 +96,41 @@ main{
 
 .task-box-shell .checklist-container{
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
-    width: 80%;
+    align-items: center;
+    width: 90%;
+    
+}
+
+.checklist-container input[type="text"]{
+    background-color: #1c1d25;
+    border: hidden;
+    border-radius: 2vw;
+
+    padding: 2vh 2vw;
+    width: 70%;
+    height: 10%;
+
+    font-family: sans-serif;
+    font-size: 1rem;
+    color: aliceblue;
+    text-align: center;
+}
+
+.card-controls{
+    text-align: center;
+}
+
+.list-container{
+    background-color: #1c1d25;
+    border: hidden;
+    border-radius: 2vw;
+    padding: 2vh 2vw;
+    font-family: sans-serif;
+    font-size: 1rem;
+    color: aliceblue;
+
 }
 
 footer{
